@@ -1,0 +1,127 @@
+<div class="container">
+    <div *ngIf="!submitted">
+        <h1>CovidEssential Form</h1>
+        <form [formGroup]="heroForm" (ngSubmit)="onSubmit(heroForm)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" formControlName="name" />
+                <div class="alert alert-danger" [hidden]="heroForm.controls.name.valid">Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Addhar card Number</label>
+                <input type="text" class="form-control" formControlName="alterEgo" />
+                <div class="alert alert-danger" [hidden]="heroForm.controls.alterEgo.valid">Alter Ego is required</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" formControlName="email" />
+                <div class="alert alert-danger" [hidden]="heroForm.controls.email.valid">Email is required and must be a valid email pattern</div>
+            </div>
+           
+            <div class="form-group">
+                <label for="power">Age</label>
+                <select class="form-control" formControlName="power">
+                  <option *ngFor="let p of powers" [value]="p">{{p}}</option>
+                </select>
+                <div   class="alert alert-danger"  [hidden]="heroForm.controls.power.value != 'Below 18 Age' ">Now this eligibility criteria is not available for this age,please select others</div>
+            </div>
+            
+            <button type="submit" class="btn btn-default" [disabled]="!heroForm.valid">Submit</button> 
+        </form>  
+    </div>
+    
+    <br>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                How do we know that COVID-19 vaccines are safe?
+              </a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+                There are strict protections in place to help ensure the safety of all COVID-19 vaccines. Before receiving validation from WHO and national regulatory agencies, COVID-19 vaccines must undergo rigorous testing in clinical trials to prove that they meet internationally agreed benchmarks for safety and efficacy.
+
+                Unprecedented scientific collaborations have allowed COVID-19 vaccine research, development, 
+                and authorizations to be completed in record time – to meet the urgent need for 
+                these vaccines while maintaining high safety standards. As with all vaccines, WHO and 
+                regulatory authorities will continuously monitor the use of COVID-19 vaccines to identify and 
+                respond to any safety issues that might arise, and through that process to assure they remain safe 
+                for use around the world.
+            </div>
+          </div>
+        </div>
+      
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingTwo">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                What are the side effects of COVID-19 vaccines?
+              </a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+            <div class="panel-body">
+                Like any vaccine, COVID-19 vaccines can cause mild, short term side effects, such as a low-grade fever or pain or redness at the injection site. Most reactions to vaccines are mild and go away within a few days on their own. More serious or long-lasting side effects to vaccines are possible but extremely rare. Vaccines are continually monitored for as long as they are in use, to detect rare adverse events and implement approaches to limit their occurrence. 
+
+                Reported side effects to COVID-19 vaccines have mostly been mild to moderate and short-lasting. They include: fever, fatigue, headache, muscle pain, chills, diarrhoea, and pain at the injection site. The chances of any of these side effects following vaccination differ according to the specific COVID-19 vaccine.
+                
+                In most cases, these can be managed with rest, plenty of non-alcoholic liquids, and paracetamol/acetaminophen for the typical side effects. Contact your care provider if the tenderness (pain) where you got the injection increases after 24 hours, or the side effects do not go away within a couple days. If you have difficulty breathing, chest pain, confusion, loss of speech or mobility, call a healthcare provider immediately. 
+      
+            </div>
+          </div>
+        </div>
+      
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingThree">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Is it safe for pregnant women, those planning to become pregnant,
+                 and breastfeeding mothers to receive COVID-19 vaccines?
+              </a>
+            </h4>
+          </div>
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+            <div class="panel-body">
+                In the interim, WHO recommends that for pregnant women the use of the COVID-19 vaccine be considered on the basis of a benefit vs risk assessment. To help pregnant women make this assessment, they should be provided with information about the risks of COVID-19 in pregnancy, the likely benefits of vaccination in the local epidemiological context, and the current limitations of safety data in pregnant women. WHO does not recommend pregnancy testing prior to vaccination. WHO does not recommend delaying pregnancy or terminating pregnancy because of vaccination.
+
+                Vaccination with any of the vaccine products that have been assessed by the WHO Strategic Advisory Group of Experts on Immunization can be offered to breastfeeding women. WHO does not recommend discontinuation of breastfeeding after vaccination. More evidence will continue to be sought in order to further inform WHO’s policy recommendations on this subject.
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+    <div *ngIf="submitted">
+        <h2>{{ submittedModel.name}} Profile Data : </h2>
+        <div class="row">
+            <div class="col-md-2">Name</div>
+            <div class="col-md-10 pull-left">{{ submittedModel.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Addhar card</div>
+            <div class="col-md-10 pull-left">{{ submittedModel.alterEgo }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Email</div>
+            <div class="col-md-10 pull-left">{{ submittedModel.email }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Phone Number</div>
+            <div class="col-md-10 pull-left">{{ submittedModel.phonenumber }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">AGe</div>
+            <div class="col-md-10 pull-left">{{ submittedModel.power }}</div>
+        </div>
+     
+       
+       
+        <br />
+        <button class="btn btn-default" (click)="submitted=false">Edit</button>
+    </div>    
+</div>
